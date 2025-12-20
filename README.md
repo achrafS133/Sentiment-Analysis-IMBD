@@ -83,25 +83,28 @@ Some key visual outputs included in this project:
 \## 📂 Project Structure
 
 
+## 📂 Project Structure
+
 Sentiment-Analysis-IMBD/
 │
-├── dataset/                     # IMDB dataset files
-├── models/                      # Saved/trained ML models
+├── dataset/                              # IMDB dataset files
+├── models/                               # Saved/trained ML models
 │
-├── NLP_SENTIMENT_ANALYSIS.ipynb           # Main notebook
-├── NLP_Sentiment_Analysis_Complete.ipynb  # Complete notebook with EDA, preprocessing, and models
+├── NLP_SENTIMENT_ANALYSIS.ipynb          # Main notebook
+├── NLP_Sentiment_Analysis_Complete.ipynb # Complete notebook with EDA, preprocessing, and models
 │
-├── requirements.txt             # Python dependencies
-├── test_dataset.py              # Script to test dataset and models
+├── requirements.txt                       # Python dependencies
+├── test_dataset.py                        # Script to test dataset and models
 │
-├── confusion_matrices.png       # Confusion matrix visualization
-├── confusion_matrices_top3.png  # Confusion matrices for top 3 models
-├── model_comparison.png         # Model comparison dashboard
-├── final_model_dashboard.png    # Final performance summary dashboard
-├── word_frequency.png           # Word frequency plot
-├── wordcloud_sentiment.png      # Wordcloud of sentiments
+├── confusion_matrices.png                 # Confusion matrix visualization
+├── confusion_matrices_top3.png            # Confusion matrices for top 3 models
+├── model_comparison.png                    # Model comparison dashboard
+├── final_model_dashboard.png               # Final performance summary dashboard
+├── word_frequency.png                      # Word frequency plot
+├── wordcloud_sentiment.png                 # Wordcloud of sentiments
 │
-└── README.md                    # Project documentation
+└── README.md                              # Project documentation
+
 
 
 
