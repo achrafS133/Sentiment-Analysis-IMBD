@@ -142,6 +142,51 @@ Sentiment-Analysis-IMBD/
 
 ---
 
+## 🏭 MLOps Architecture
+
+This project has been upgraded with a comprehensive MLOps pipeline:
+
+### 1. 🚀 Production API & Explainability
+High-performance FastAPI service for real-time inference.
+
+- **Endpoints**:
+  - `POST /predict`: Get sentiment (Positive/Negative) and confidence score.
+  - `POST /explain`: Get feature contributions (why the model predicted X).
+  - `GET /metrics`: Prometheus metrics for monitoring.
+  - `GET /health`: Health check for k8s probes.
+
+### 2. 🐳 Docker Ecosystem
+Fully containerized stack for reproducible deployments.
+
+```bash
+# Start all services (API, MLflow, Prometheus, Grafana)
+docker-compose -f docker/docker-compose.yml up --build -d
+```
+
+| Service | URL | Creds (Default) |
+|---------|-----|-----------------|
+| **API** | [http://localhost:8005](http://localhost:8005) | - |
+| **Docs** | [http://localhost:8005/docs](http://localhost:8005/docs) | - |
+| **MLflow** | [http://localhost:5005](http://localhost:5005) | - |
+| **Grafana**| [http://localhost:3005](http://localhost:3005) | admin/admin |
+| **Prometheus**| [http://localhost:9095](http://localhost:9095) | - |
+
+### 3. 🔄 Data Pipelines (DVC)
+Reproducible data processing pipelines managed by DVC.
+
+```bash
+# Reproduce the entire pipeline (Ingestion -> Transform -> Train)
+dvc repro
+```
+
+### 4. 📈 Continuous Integration
+GitHub Actions workflow (`.github/workflows/ml-pipeline.yml`) ensures:
+- Code quality (Black, Flake8, MyPy)
+- Unit testing
+- Automated model training on main branch push
+
+---
+
 ## 🙌 Acknowledgments
 
 Thanks to the open IMDB dataset and the Python ecosystem (scikit‑learn, pandas, numpy, matplotlib).

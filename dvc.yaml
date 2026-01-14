@@ -1,0 +1,29 @@
+stages:
+  ingestion:
+    cmd: python src/pipeline/stage_01_data_ingestion.py
+    deps:
+      - dataset/IMDBDataset.csv
+      - src/pipeline/stage_01_data_ingestion.py
+    outs:
+      - artifacts/data_ingestion/data.pkl
+
+  transformation:
+    cmd: python src/pipeline/stage_02_data_transformation.py
+    deps:
+      - src/pipeline/stage_02_data_transformation.py
+      - artifacts/data_ingestion/data.pkl
+    outs:
+      - artifacts/vectorizer/tfidf.pkl
+      - artifacts/data_transformation/data.pkl
+
+  training:
+    cmd: python src/pipeline/stage_03_model_trainer.py
+    deps:
+      - src/pipeline/stage_03_model_trainer.py
+      - artifacts/data_transformation/data.pkl
+    params:
+      - params.yaml:
+          - model_trainer.C
+          - model_trainer.max_iter
+    outs:
+      - models/logreg_tfidf.pkl

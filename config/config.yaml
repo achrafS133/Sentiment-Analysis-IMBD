@@ -1,0 +1,24 @@
+artifacts_root: artifacts
+
+# Data ingestion settings
+data_ingestion:
+  dataset_path: dataset/IMDBDataset.csv
+  text_column: review
+  label_column: sentiment
+  label_mapping:
+    positive: 1
+    negative: 0
+
+# Data transformation settings
+data_transformation:
+  artifacts_root: artifacts
+  vectorizer_dir: artifacts/vectorizer
+  vectorizer_name: tfidf.pkl
+
+# Model trainer settings
+model_trainer:
+  model_dir: models
+  model_name: logreg_tfidf.pkl
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: imdb-sentiment
+  registered_model_name: sentiment_analysis_model

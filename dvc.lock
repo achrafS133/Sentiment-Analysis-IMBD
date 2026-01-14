@@ -1,0 +1,58 @@
+schema: '2.0'
+stages:
+  ingestion:
+    cmd: python src/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: dataset/IMDBDataset.csv
+      hash: md5
+      md5: 308443a50e5c993e7b8a1cdb95750026
+      size: 66212309
+    - path: src/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 5f09a8396256c2d712f12838e282642f
+      size: 1520
+    outs:
+    - path: artifacts/data_ingestion/data.pkl
+      hash: md5
+      md5: 72dbb038f94f24f3b104df378cda86f8
+      size: 65398521
+  transformation:
+    cmd: python src/pipeline/stage_02_data_transformation.py
+    deps:
+    - path: artifacts/data_ingestion/data.pkl
+      hash: md5
+      md5: 72dbb038f94f24f3b104df378cda86f8
+      size: 65398521
+    - path: src/pipeline/stage_02_data_transformation.py
+      hash: md5
+      md5: b5760eb423c13f4b3029e2f354a066e8
+      size: 2075
+    outs:
+    - path: artifacts/data_transformation/data.pkl
+      hash: md5
+      md5: 2ee952c710e1b40a14f21ca0749d04fc
+      size: 64886582
+    - path: artifacts/vectorizer/tfidf.pkl
+      hash: md5
+      md5: 09fb27d7a17a2d53348d986549d06e75
+      size: 1776844
+  training:
+    cmd: python src/pipeline/stage_03_model_trainer.py
+    deps:
+    - path: artifacts/data_transformation/data.pkl
+      hash: md5
+      md5: 2ee952c710e1b40a14f21ca0749d04fc
+      size: 64886582
+    - path: src/pipeline/stage_03_model_trainer.py
+      hash: md5
+      md5: 8c0f83e5abeb92c6a9254db6ddaab254
+      size: 1727
+    params:
+      params.yaml:
+        model_trainer.C: 1.0
+        model_trainer.max_iter: 200
+    outs:
+    - path: models/logreg_tfidf.pkl
+      hash: md5
+      md5: 7551e987f8503160c8ab657d9141e02a
+      size: 400815
